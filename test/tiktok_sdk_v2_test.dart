@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tiktok_sdk_v2/tiktok_sdk_v2.dart';
+import 'package:tiktok_sdk_login_share/tiktok_sdk_login_share.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('com.tofinds.tiktok_sdk_v2');

@@ -2,6 +2,7 @@ import Flutter
 import UIKit
 import TikTokOpenAuthSDK
 import TikTokOpenSDKCore
+import TikTokOpenShareSDK
 
 public class TiktokSdkV2Plugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -17,6 +18,8 @@ public class TiktokSdkV2Plugin: NSObject, FlutterPlugin {
       result(nil)
     case "login":
       login(call, result: result)
+    case "share":
+      share(call, result: result)
     default:
       result(FlutterMethodNotImplemented)
       return
@@ -68,6 +71,46 @@ public class TiktokSdkV2Plugin: NSObject, FlutterPlugin {
             details: nil
           ))
         }
+    }
+  }
+
+  func share(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    guard let args = call.arguments as? [String: Any] else {
+      result(FlutterError.nilArgument)
+      return
+    }
+
+    guard let mediaUrls = args["mediaUrls"] as? [String] else {
+      result(FlutterError.failedArgumentField("mediaUrls", type: [String].self))
+      return
+    }
+
+
+    guard let redirectURI = args["redirectURI"] as? String else {
+      result(FlutterError.failedArgumentField("redirectURI", type: String.self))
+      return
+    }
+
+    let greenScreenEnabled = args["greenScreenEnabled"] as? Bool ?? false
+    let isSharingImage = args["isSharingImage"] as? Bool ?? false
+
+    let shareRequest = TikTokShareRequest(localIdentifiers: mediaUrls, 
+                                      mediaType: isSharingImage ? .image : .video, 
+                                      redirectURI: redirectURI)
+    shareRequest.shareFormat = greenScreenEnabled ? .greenScreen : .normal
+
+    shareRequest.send { response in
+      guard let shareResponse = response as? TikTokShareResponse else { 
+        return }
+      if shareResponse.errorCode == .noError {
+          result(true)
+      } else {
+          result(FlutterError(
+              code: String(shareResponse.errorCode.rawValue),
+              message: shareResponse.errorDescription,
+              details: nil
+            ))
+      }
     }
   }
 }

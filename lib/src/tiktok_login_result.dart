@@ -1,4 +1,4 @@
-part of '../tiktok_sdk_v2.dart';
+part of '../tiktok_sdk_login_share.dart';
 
 class TikTokLoginResult {
   const TikTokLoginResult({

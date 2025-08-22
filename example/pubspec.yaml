@@ -10,8 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  tiktok_sdk_v2:
+  tiktok_sdk_login_share:
     path: ../
+  image_picker: ^1.1.2
+  file_picker: ^10.2.0
+  ph_picker_view_controller: ^0.7.0
 
 dev_dependencies:
   flutter_test:

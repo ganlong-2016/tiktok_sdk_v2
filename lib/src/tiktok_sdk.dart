@@ -1,4 +1,4 @@
-part of '../tiktok_sdk_v2.dart';
+part of '../tiktok_sdk_login_share.dart';
 
 class TikTokSDK {
   static const MethodChannel _channel =
@@ -81,6 +81,25 @@ class TikTokSDK {
         errorCode: e.code,
         errorMessage: e.message,
       );
+    }
+  }
+
+  Future<bool> share({
+    required List<String> mediaUrls,
+    required bool isSharingImage,
+    required bool greenScreenEnabled,
+    String? redirectURI,
+  }) async {
+    try{
+       await _channel.invokeMethod('share', <String, dynamic>{
+      'mediaUrls': mediaUrls,
+      'isSharingImage': isSharingImage,
+        'greenScreenEnabled': greenScreenEnabled,
+        'redirectURI': redirectURI,
+      });
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }

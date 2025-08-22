@@ -25,9 +25,13 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.fastclip.app</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>$TikTokClientKey</string>
+				<string>https</string>
 			</array>
 		</dict>
 	</array>
@@ -43,7 +47,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>TikTokClientKey</key>
-	<string>$TikTokClientKey</string>
+	<string>your_client_key</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

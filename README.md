@@ -101,7 +101,14 @@ final result = await TikTokSDK.instance.login(permissions: {
   TikTokPermissionType.videoList
 }, redirectUri: DefaultConfig.system.redirectUri);
 ```
-
+### Step 3: Call share
+```
+final result = await TikTokSDK.instance.share(
+                            mediaUrls: _selectedMediaUri,
+                            isSharingImage: false,
+                            greenScreenEnabled: false,
+                            redirectURI: 'your_redirect_uri');
+```
 # Example code
-[example](https://github.com/cnAlan/tiktok_sdk_v2/tree/master/example)
+[example](https://github.com/ganlong-2016/tiktok_sdk_v2/tree/master/example)
 
